@@ -1,3 +1,4 @@
+import os
 import requests
 import json
 import time
@@ -8,8 +9,12 @@ import time
 # Toggle use_mock to False to hit the live Veria Core API.
 use_mock = False
 
-# Live Veria Core API Endpoint
-API_URL = "https://veria-api-prod-190356591245.us-central1.run.app/compliance/check"
+# API Endpoint - configurable via environment variable
+# Default: Production Veria Compliance API
+API_URL = os.environ.get(
+    "VERIA_API_URL",
+    "https://veria-api-prod-190356591245.us-central1.run.app/compliance/check"
+)
 
 # Known Sanctioned Addresses (The "Answer Key")
 # These are real addresses from OFAC/Lazarus lists.
